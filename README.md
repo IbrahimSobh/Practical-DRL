@@ -23,9 +23,12 @@ for t in range(1000):
       break;
 ```
 
-[![colab](https://img.youtube.com/vi/TmPfTpjtdgg/0.jpg)](https://youtu.be/TmPfTpjtdgg) 
+<!-- ![pong](images/pong.gif) -->
+<!-- ![key](images/key.gif) -->
 
-[![colab](https://img.youtube.com/vi/W2CAghUiofY/0.jpg)](https://youtu.be/W2CAghUiofY) 
+[![colab](https://img.youtube.com/vi/TmPfTpjtdgg/0.jpg)](https://youtu.be/TmPfTpjtdgg)
+
+[![colab](https://img.youtube.com/vi/W2CAghUiofY/0.jpg)](https://youtu.be/W2CAghUiofY)
 
 
 ## 2- Hello RL!
@@ -68,6 +71,8 @@ A policy based RL algorithm that directly gets the optimal policy (direct mappin
 ## 5- PPO [Proximal Policy Optimization](https://openai.com/blog/openai-baselines-ppo/#ppo)
 On policy algorithm that uses old trajectories, instead of just throwing them away, by modifying them so that they are representative of the new policy, using approximated re-weight factor. 
 
+![cart](images/cart.png)
+
 ```
 # multiprocess environment
 n_cpu = 4
@@ -83,6 +88,13 @@ model.save("ppo_cartpole_4")
 Actor Critic (AC) methods are a hybrid of value based and policy based methods, where a Critic measures how good the action taken is by estimating a value function, and an Actor controls how the agent behaves (policy-based). 
 Asynchronous Methods: multiple agents on different threads are used for parallel exploring the state spaces and make decorrelated updates to the actor and the critic. A3C Asynchronous Advantage Actor Critic where Each agent updates the network on its own, while A2C is the Synchronous variant where it waits for all agents and then update the network at once. 
 
+
+```
+model = A2C(MlpPolicy, env, verbose=0, tensorboard_log="./a2c_cartpole_tensorboard/")
+model.learn(total_timesteps=total_timesteps)
+```
+
+![a2c](images/a2c.PNG)
 
 ## 7-  DDPG [Deep Deterministic Policy Gradient](https://arxiv.org/pdf/1509.02971.pdf)
 In DDPG, (DQN) is adapted to continuous action domains, where the Deterministic Policy (the Actor) gives the best believed action for any given state (no argmax over actions)
@@ -120,12 +132,28 @@ model.learn(total_timesteps=total_timesteps)
 ## 9- Behavior Cloning (BC)
 BC uses expert demonstrations (observations-actions pairs), as a supervised learning problem. The policy network is trained to reproduce the expert behavior, then train the RL model for self-improvement.
 
+Steps:
+- Generate and save trajectories (ex: using a trained DQN agent)
+- Load expert trajectories
+- Pretrain the RL model in a supervised way
+- Evaluate the pre-trained model  
+- Train the RL model for self improvement (RL)
+- Evaluate the final RL model 
+
+![bc](images/bc.png)
+
 ## 10- GAIL [Generative Adversarial Imitation Learning](https://arxiv.org/pdf/1606.03476.pdf)
 In GANs [Generative Adversarial Networks](https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf), we have two networks learning together:
 - Generator network: try to fool the discriminator by generating real-looking images
 - Discriminator network: try to distinguish between real and fake images
 
 GAIL uses a discriminator that tries to separate expert trajectory from trajectories of the learned policy, which has the role of the generator here.
+
+Steps:
+- Generate and save expert dataset
+- Load the expert dataset
+- Train GAIL agent and evaluate
+
 
 
 
