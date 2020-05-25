@@ -89,10 +89,33 @@ In DDPG, (DQN) is adapted to continuous action domains, where the Deterministic 
 
 ![pend](images/pend.gif)
 
+```
+env = gym.make('Pendulum-v0') 
+env = DummyVecEnv([lambda: env])
+action_noise = OrnsteinUhlenbeckActionNoise(mean=np.zeros(n_actions), sigma=float(0.5) * np.ones(n_actions))
+```
+```
+model = DDPG(MlpPolicy, env, verbose=0, param_noise=param_noise, action_noise=action_noise)
+model.learn(total_timesteps=total_timesteps, callback=callback)
+```
+
 ## 8- TD3 [Twin Delayed Deep Deterministic Policy Gradients](https://arxiv.org/pdf/1802.09477.pdf) 
 TD3 is an algorithm that addresses the overestimated Q-values issue of DDPG by introducing the Clipped Double-Q Learning. where TD3 learns two Q-functions instead of one.
 
 ![td3](images/td3.gif)
+
+```
+env = gym.make('BipedalWalker-v2')
+env = DummyVecEnv([lambda: env])
+n_actions = env.action_space.shape[-1]
+action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
+```
+```
+model = TD3(MlpPolicy, env, action_noise=action_noise, verbose=0, tensorboard_log="./td3_BipedalWalker_tensorboard/")
+model.learn(total_timesteps=total_timesteps)
+```
+![td3tb](images/td3tb.png)
+
 
 ## 9- Behavior Cloning (BC)
 BC uses expert demonstrations (observations-actions pairs), as a supervised learning problem. The policy network is trained to reproduce the expert behavior, then train the RL model for self-improvement.
