@@ -71,7 +71,8 @@ A policy based RL algorithm that directly gets the optimal policy (direct mappin
 ## 5- PPO [Proximal Policy Optimization](https://openai.com/blog/openai-baselines-ppo/#ppo)
 On policy algorithm that uses old trajectories, instead of just throwing them away, by modifying them so that they are representative of the new policy, using approximated re-weight factor. 
 
-![cart](images/cart.png)
+![cart](https://i.imgur.com/5ziiZUD.gif)
+
 
 ```
 # multiprocess environment
