@@ -11,6 +11,8 @@ This is a practical resource that makes it easier to learn about and apply deep 
 - Advanced RL algorithms using the [Stable Baselines](https://github.com/hill-a/stable-baselines) that extends and improves the [OpenAI Baselines](https://github.com/openai/baselines/).
 
 ## 1- Hello Environments! 
+<a href="https://colab.research.google.com/drive/1uj_QK86X7qSGtq11ztLkY2yg9GO8GYRx?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 [Gym](https://gym.openai.com/docs/) comes with a diverse suite of environments ranging from Classic control and toy text to Atari, 2D and 3D robots.
 
 ```
@@ -32,6 +34,8 @@ for t in range(1000):
 
 
 ## 2- Hello RL!
+<a href="https://colab.research.google.com/drive/1l3R9QdcVs1Lpy7gq_9zKZejBbdHRi2iV?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 Some RL methods must wait until the end of an episode to update the value function estimate. More practically, **Temporal-difference** (TD) methods update the value function after every time step. Two main algorithms are implemented: 
 - 2.1  **SARSA**: Updates Q after SARSA sequence (A is chosen from the e-greedy policy)
 ```
@@ -50,6 +54,8 @@ Q[s,a] = Q[s,a] + alpha*(r + gama*np.max(Q[s1,:]) - Q[s,a])
 # Advanced Deep RL:
 
 ## 3- DQN [Human-level control through deep reinforcement learning](https://www.nature.com/articles/nature14236)
+<a href="https://colab.research.google.com/drive/1ZVUwrkvj4uZbwV6irejGkW5l2-ZyuBg-?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 A value based RL algorithm, where Deep Neural Network is used as a function approximator to estimate the action value function Q(s, a).
 
 ![Lunar](images/Lunar.gif)
@@ -66,9 +72,13 @@ model.save("dqn_LunarLander_prioreplay")
 
 
 ## 4- REINFORCE
+<a href="https://colab.research.google.com/drive/1ufRR76yywyDtqddXz_MhcHIrpg5ww_II?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 A policy based RL algorithm that directly gets the optimal policy (direct mapping from states to actions) without estimating a value function. REINFORCE samples few trajectories using the current policy and uses them to estimate the gradient to increase / decrease the action probability based in the return.
 
 ## 5- PPO [Proximal Policy Optimization](https://openai.com/blog/openai-baselines-ppo/#ppo)
+<a href="https://colab.research.google.com/drive/1xPZI7EeeUf4nVAMEQwL8lrL7sT3lvfog?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 On policy algorithm that uses old trajectories, instead of just throwing them away, by modifying them so that they are representative of the new policy, using approximated re-weight factor. 
 
 ![cart](https://i.imgur.com/5ziiZUD.gif)
@@ -86,6 +96,8 @@ model.save("ppo_cartpole_4")
 ![PPOtb](images/PPO1.png)
 
 ## 6- A3C and A2C [Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1602.01783.pdf)
+<a href="https://colab.research.google.com/drive/1_M5RhldU-PGak_raI0w1zf9Z6Dp57GYR?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 Actor Critic (AC) methods are a hybrid of value based and policy based methods, where a Critic measures how good the action taken is by estimating a value function, and an Actor controls how the agent behaves (policy-based). 
 Asynchronous Methods: multiple agents on different threads are used for parallel exploring the state spaces and make decorrelated updates to the actor and the critic. A3C Asynchronous Advantage Actor Critic where Each agent updates the network on its own, while A2C is the Synchronous variant where it waits for all agents and then update the network at once. 
 
@@ -98,6 +110,8 @@ model.learn(total_timesteps=total_timesteps)
 ![a2c](images/a2c.PNG)
 
 ## 7-  DDPG [Deep Deterministic Policy Gradient](https://arxiv.org/pdf/1509.02971.pdf)
+<a href="https://colab.research.google.com/drive/1fb6wt9QKQrSKDwDK7HSXUEqfE9cQ1cUO?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 In DDPG, (DQN) is adapted to continuous action domains, where the Deterministic Policy (the Actor) gives the best believed action for any given state (no argmax over actions)
 
 ![pend](images/pend.gif)
@@ -112,7 +126,9 @@ model = DDPG(MlpPolicy, env, verbose=0, param_noise=param_noise, action_noise=ac
 model.learn(total_timesteps=total_timesteps, callback=callback)
 ```
 
-## 8- TD3 [Twin Delayed Deep Deterministic Policy Gradients](https://arxiv.org/pdf/1802.09477.pdf) 
+## 8- TD3 [Twin Delayed Deep Deterministic Policy Gradients](https://arxiv.org/pdf/1802.09477.pdf)
+<a href="https://colab.research.google.com/drive/1YJnOw2m0BWqzJFqWwtEm565hE2M1sYl8?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 TD3 is an algorithm that addresses the overestimated Q-values issue of DDPG by introducing the Clipped Double-Q Learning. where TD3 learns two Q-functions instead of one.
 
 ![td3](images/td3.gif)
@@ -131,6 +147,8 @@ model.learn(total_timesteps=total_timesteps)
 
 
 ## 9- Behavior Cloning (BC)
+<a href="https://colab.research.google.com/drive/1HWqta3KrI_x_Gr5ugy6B7cfMTrvDPRQC?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 BC uses expert demonstrations (observations-actions pairs), as a supervised learning problem. The policy network is trained to reproduce the expert behavior, then train the RL model for self-improvement.
 
 Steps:
@@ -144,6 +162,8 @@ Steps:
 ![bc](images/bc.png)
 
 ## 10- GAIL [Generative Adversarial Imitation Learning](https://arxiv.org/pdf/1606.03476.pdf)
+<a href="https://colab.research.google.com/drive/1WhiULuo9oBo1kKgXqQjNY53ht3J0TlEG?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
 In GANs [Generative Adversarial Networks](https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf), we have two networks learning together:
 - Generator network: try to fool the discriminator by generating real-looking images
 - Discriminator network: try to distinguish between real and fake images
