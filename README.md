@@ -10,6 +10,9 @@ This is a practical resource that makes it easier to learn about and apply deep 
 - Simple RL algorithms from scratch, based on Numpy, such as Q-Learning, SARSA and REINFORCE applied on simple grid world environments. 
 - Advanced RL algorithms using the [Stable Baselines](https://github.com/hill-a/stable-baselines) that extends and improves the [OpenAI Baselines](https://github.com/openai/baselines/).
 
+<a href="https://stable-baselines.readthedocs.io/en/master/" target="_parent"><img src="https://stable-baselines.readthedocs.io/en/master/_static/logo.png" alt="stable baselines"/></a>
+
+
 ## 1- Hello Environments! 
 <a href="https://colab.research.google.com/drive/1uj_QK86X7qSGtq11ztLkY2yg9GO8GYRx?usp=sharing" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
